@@ -13,9 +13,11 @@ const Schwifty = require('schwifty');
 
 //Services
 const productService = require('../lib/service/ProductService');
+const ShoppingCartService = require('../lib/service/ShoppingCartService');
 
 //Models
 const productModel = require('../lib/model/ProductModel');
+const shoppingCartModel = require('../lib/model/ShoppingCartModel');
 
 const server = new Hapi.Server({
 	host: parameters.server.host,
@@ -32,7 +34,7 @@ const swaggerOptions = {
 const paginationOpts = {
     routes: {
         include: ['/product', '/product/search'],
-        exclude: ['/documentation']
+        exclude: ['/documentation', '/shoppingcart​']
     }
 };
 
@@ -65,10 +67,7 @@ module.exports.start = async () => {
             options: swaggerOptions
         }
     ]);
-    /*await server.register({
-        plugin: require('hapi-mysql2'),
-        options: mysqlOpts
-    });*/
+
     await server.register({
         plugin: Schwifty,
         options: schwiftyOpts
@@ -82,7 +81,10 @@ module.exports.start = async () => {
     await server.register(Schmervice);
 
     server.registerService(productService);
+    server.registerService(ShoppingCartService);
+
     server.schwifty(productModel);
+    server.schwifty(shoppingCartModel);
 
     await server.start();
     console.log(`Server running at: ${server.info.uri}`);

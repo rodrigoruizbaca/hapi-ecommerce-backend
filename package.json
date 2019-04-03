@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "crypto": "^1.0.1",
     "hapi": "^18.1.0",
     "hapi-mysql2": "^2.2.5",
     "hapi-pagination": "^2.1.0",
@@ -16,6 +17,7 @@
     "qs": "^6.7.0",
     "schmervice": "^1.1.0",
     "schwifty": "^4.2.0",
+    "uuid": "^3.3.2",
     "vision": "^5.4.4"
   }
 }

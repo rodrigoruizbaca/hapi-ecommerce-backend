@@ -1,6 +1,7 @@
 'use strict';
 
-const ProductRoutes = require('../lib/route/product/routes');
+const ProductRoutes = require('../lib/route/ProductRoutes');
+const ShoppingCartRoutes = require('../lib/route/ShoppingCartRoutes');
 const routes = [];
 
 module.exports = routes.concat(
@@ -8,5 +9,7 @@ module.exports = routes.concat(
     ProductRoutes.getById,
     ProductRoutes.search,
     ProductRoutes.getByCategory,
-    ProductRoutes.getByDepartment
+    ProductRoutes.getByDepartment,
+    ShoppingCartRoutes.generateUniqueId,
+    ShoppingCartRoutes.add
 );
