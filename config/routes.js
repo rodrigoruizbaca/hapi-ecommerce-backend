@@ -2,6 +2,7 @@
 
 const ProductRoutes = require('../lib/route/ProductRoutes');
 const ShoppingCartRoutes = require('../lib/route/ShoppingCartRoutes');
+const CustomerRoutes = require('../lib/route/CustomerRoutes');
 const routes = [];
 
 module.exports = routes.concat(
@@ -11,5 +12,8 @@ module.exports = routes.concat(
     ProductRoutes.getByCategory,
     ProductRoutes.getByDepartment,
     ShoppingCartRoutes.generateUniqueId,
-    ShoppingCartRoutes.add
+    ShoppingCartRoutes.add,
+    CustomerRoutes.add,
+    CustomerRoutes.login,
+    CustomerRoutes.update
 );
