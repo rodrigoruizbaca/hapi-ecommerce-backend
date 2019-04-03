@@ -12,12 +12,12 @@ const Schmervice = require('schmervice');
 const Schwifty = require('schwifty');
 
 //Services
-const productService = require('../lib/service/ProductService');
+const ProductService = require('../lib/service/ProductService');
 const ShoppingCartService = require('../lib/service/ShoppingCartService');
 
 //Models
-const productModel = require('../lib/model/ProductModel');
-const shoppingCartModel = require('../lib/model/ShoppingCartModel');
+const ProductModel = require('../lib/model/ProductModel');
+const ShoppingCartModel = require('../lib/model/ShoppingCartModel');
 
 const server = new Hapi.Server({
 	host: parameters.server.host,
@@ -80,11 +80,11 @@ module.exports.start = async () => {
     );
     await server.register(Schmervice);
 
-    server.registerService(productService);
+    server.registerService(ProductService);
     server.registerService(ShoppingCartService);
 
-    server.schwifty(productModel);
-    server.schwifty(shoppingCartModel);
+    server.schwifty(ProductModel);
+    server.schwifty(ShoppingCartModel);
 
     await server.start();
     console.log(`Server running at: ${server.info.uri}`);
