@@ -1,0 +1,264 @@
+---
+swagger: '2.0'
+host: localhost:3000
+basePath: "/"
+schemes:
+- http
+info:
+  title: Test API Documentation
+  version: 1.0.0
+tags: []
+paths:
+  "/products":
+    get:
+      operationId: getProducts
+      parameters:
+      - type: integer
+        name: limit
+        in: query
+        required: false
+      - type: integer
+        name: page
+        in: query
+        required: false
+      - type: boolean
+        name: pagination
+        in: query
+      - type: string
+        name: description_length
+        in: query
+        required: false
+      tags:
+      - products
+      responses:
+        default:
+          schema:
+            type: string
+          description: Successful
+  "/products/search":
+    get:
+      operationId: getProductsSearch
+      parameters:
+      - type: string
+        name: query_string
+        in: query
+        required: true
+      - type: integer
+        name: limit
+        in: query
+        required: false
+      - type: integer
+        name: page
+        in: query
+        required: false
+      - type: boolean
+        name: pagination
+        in: query
+      - type: string
+        name: description_length
+        in: query
+        required: false
+      tags:
+      - products
+      responses:
+        default:
+          schema:
+            type: string
+          description: Successful
+  "/products/{id}":
+    get:
+      operationId: getProductsId
+      tags:
+      - products
+      responses:
+        default:
+          schema:
+            type: string
+          description: Successful
+  "/shoppingcart/generate-unique-id":
+    get:
+      operationId: getShoppingcartGenerateuniqueid
+      tags:
+      - shoppingcart
+      responses:
+        default:
+          schema:
+            type: string
+          description: Successful
+  "/products/in-category/{category_id}":
+    get:
+      operationId: getProductsIncategoryCategory_id
+      parameters:
+      - type: number
+        name: category_id
+        in: path
+        required: true
+      - type: integer
+        name: limit
+        in: query
+        required: false
+      - type: integer
+        name: page
+        in: query
+        required: false
+      - type: boolean
+        name: pagination
+        in: query
+      - type: string
+        name: description_length
+        in: query
+        required: false
+      tags:
+      - products
+      responses:
+        default:
+          schema:
+            type: string
+          description: Successful
+  "/products/in-department/{department_id}":
+    get:
+      operationId: getProductsIndepartmentDepartment_id
+      parameters:
+      - type: number
+        name: department_id
+        in: path
+        required: true
+      - type: integer
+        name: limit
+        in: query
+        required: false
+      - type: integer
+        name: page
+        in: query
+        required: false
+      - type: boolean
+        name: pagination
+        in: query
+      - type: string
+        name: description_length
+        in: query
+        required: false
+      tags:
+      - products
+      responses:
+        default:
+          schema:
+            type: string
+          description: Successful
+  "/customers":
+    post:
+      operationId: postCustomers
+      parameters:
+      - in: body
+        name: body
+        schema:
+          "$ref": "#/definitions/Model 1"
+      tags:
+      - customers
+      responses:
+        default:
+          schema:
+            type: string
+          description: Successful
+    put:
+      operationId: putCustomers
+      parameters:
+      - in: body
+        name: body
+        schema:
+          "$ref": "#/definitions/Model 4"
+      tags:
+      - customers
+      responses:
+        default:
+          schema:
+            type: string
+          description: Successful
+  "/customers/login":
+    post:
+      operationId: postCustomersLogin
+      parameters:
+      - in: body
+        name: body
+        schema:
+          "$ref": "#/definitions/Model 2"
+      tags:
+      - customers
+      responses:
+        default:
+          schema:
+            type: string
+          description: Successful
+  "/shoppingcart/add":
+    post:
+      operationId: postShoppingcartAdd
+      parameters:
+      - in: body
+        name: body
+        schema:
+          "$ref": "#/definitions/Model 3"
+      tags:
+      - shoppingcart
+      responses:
+        default:
+          schema:
+            type: string
+          description: Successful
+definitions:
+  Model 1:
+    type: object
+    properties:
+      name:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - name
+    - email
+    - password
+  Model 2:
+    type: object
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+  Model 3:
+    type: object
+    properties:
+      cart_id:
+        type: string
+      product_id:
+        type: number
+      attributes:
+        type: string
+      quantity:
+        type: number
+    required:
+    - cart_id
+    - product_id
+    - attributes
+    - quantity
+  Model 4:
+    type: object
+    properties:
+      name:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+      day_phone:
+        type: string
+      eve_phone:
+        type: string
+      mob_phone:
+        type: string
+    required:
+    - name
+    - email

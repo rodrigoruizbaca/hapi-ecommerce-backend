@@ -1,10 +1,3 @@
-
-
-# hapi-test
-E-commerce backend in nodejs using hapi framework
-
-
-## Endpoints
 # Test API Documentation
 ## Version: 1.0.0
 
@@ -196,11 +189,3 @@ E-commerce backend in nodejs using hapi framework
 | day_phone | string |  | No |
 | eve_phone | string |  | No |
 | mob_phone | string |  | No |
-
-
-
-## Developing
-
-
-
-### Tools
