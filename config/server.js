@@ -12,6 +12,7 @@ const Schmervice = require('schmervice');
 const Schwifty = require('schwifty'); 
 const fs   = require('fs');
 const path = require('path');
+const { ServiceError } = require('../lib/errors');
 
 //Services
 const { ProductService, ShoppingCartService, CustomerService, JwtService, ReviewService } = require('../lib/service');
@@ -158,6 +159,18 @@ module.exports.start = async () => {
     server.schwifty(ReviewModel);
 
     server.route(routes); 
+
+    server.ext('onPreResponse', (request, h) => {
+        const response = request.response;
+        if (response instanceof ServiceError) {
+            if (response.status < 200 || response.status > 299) {   
+                return h.response(response.getJson()).code(response.status);
+            } else {
+                return h.continue;
+            }
+        }
+        return h.continue;
+    });    
 
     await server.start();
     console.log(`Server running at: ${server.info.uri}`);
