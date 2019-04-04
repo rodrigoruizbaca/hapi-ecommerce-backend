@@ -14,15 +14,11 @@ const fs   = require('fs');
 const path = require('path');
 
 //Services
-const ProductService = require('../lib/service/ProductService');
-const ShoppingCartService = require('../lib/service/ShoppingCartService');
-const CustomerService = require('../lib/service/CustomerService');
-const JwtService = require('../lib/service/JwtService');
+const { ProductService, ShoppingCartService, CustomerService, JwtService, ReviewService } = require('../lib/service');
 
 //Models
-const ProductModel = require('../lib/model/ProductModel');
-const ShoppingCartModel = require('../lib/model/ShoppingCartModel');
-const CustomerModel = require('../lib/model/CustomerModel');
+const { ProductModel, ShoppingCartModel, CustomerModel, ReviewModel } = require('../lib/model');
+
 
 const server = new Hapi.Server({
 	host: parameters.server.host,
@@ -149,16 +145,17 @@ module.exports.start = async () => {
     await server.register(require('hapi-auth-jwt2'));
 
     server.auth.strategy('jwt', 'jwt', authOpts);
-    //server.auth.default('jwt');
 
     server.registerService(ProductService);
     server.registerService(ShoppingCartService);
     server.registerService(CustomerService);
     server.registerService(JwtService);
+    server.registerService(ReviewService);
 
     server.schwifty(ProductModel);
     server.schwifty(ShoppingCartModel);
     server.schwifty(CustomerModel);
+    server.schwifty(ReviewModel);
 
     server.route(routes); 
 
