@@ -1,5 +1,6 @@
 'use strict';
-const { ProductRoutes, ShoppingCartRoutes, CustomerRoutes} = require('../lib/route');
+
+const { ProductRoutes, ShoppingCartRoutes, CustomerRoutes } = require('../lib/route');
 
 const routes = [];
 

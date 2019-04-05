@@ -115,14 +115,7 @@ const schwiftyOpts = {
     }
 };
 
-
-
-module.exports.init = async () => {
-	await server.initialize();
-    return server;
-};
-
-module.exports.start = async () => {
+const configureServer = async () => {
     await server.register([
         Inert,
         Vision,
@@ -163,6 +156,7 @@ module.exports.start = async () => {
     server.ext('onPreResponse', (request, h) => {
         const response = request.response;
         if (response instanceof ServiceError) {
+            console.error(response);
             if (response.status < 200 || response.status > 299) {   
                 return h.response(response.getJson()).code(response.status);
             } else {
@@ -170,7 +164,19 @@ module.exports.start = async () => {
             }
         }
         return h.continue;
-    });    
+    });   
+};
+
+
+module.exports.init = async () => {     
+    await configureServer();   
+    await server.initialize();
+    
+    return server;
+};
+
+module.exports.start = async () => {
+    await configureServer();
 
     await server.start();
     console.log(`Server running at: ${server.info.uri}`);
