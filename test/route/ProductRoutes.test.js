@@ -1,7 +1,7 @@
 
 const { expect } = require('@hapi/code');
-const { it, describe, beforeEach, afterEach, before, after } = exports.lab = require('@hapi/lab').script();
-const { init } = require('../config/server');
+const { it, describe, before, after } = exports.lab = require('@hapi/lab').script();
+const { init } = require('../../config/server');
 
 describe('GET /products', () => {
     let server;
